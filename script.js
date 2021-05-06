@@ -4,3 +4,4 @@
 const Person = function (firstName, birthyear) {};
 
 // The difference between a normal function and a constructor function is that a constructor function is called with new keyword (i.e. new String())
+new Person("Thomas", 1997);
