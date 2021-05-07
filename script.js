@@ -10,6 +10,8 @@ const Person = function (firstName, birthyear) {
 // new is an operator because it ___
 const thomas = new Person("Thomas", 1997);
 console.log(thomas);
+const marilyn = new Person("Marilyn", 1997);
+console.log(marilyn);
 
 // Calling a function with the new operator does a lot more than just invoking the function...
 // 1. New {} is created
