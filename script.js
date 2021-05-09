@@ -3,8 +3,13 @@
 // Constuctor Functions
 // Arrow functions do not work for constructors because they do not have 'this' which is required
 const Person = function (firstName, birthyear) {
+  // Instance properties
   this.firstName = firstName;
   this.birthyear = birthyear;
+
+  this.calcAge = function () {
+    console.log(2037 - this.birthyear);
+  };
 };
 
 // The difference between a normal function and a constructor function is that a constructor function is called with new keyword (i.e. new String())
@@ -18,10 +23,15 @@ console.log(thomas);
 // 3. {} is linked to prototype
 // 4. Function automatically returns the {}, so it is the value of the {} when called.
 
-const marilyn = new Person("Marilyn", 1997);
-const ethan = new Person("Ethan", 1997);
+const marilyn = new Person("Marilyn", 1996);
+const ethan = new Person("Ethan", 1998);
 console.log(marilyn);
 console.log(ethan);
 
+const edgardo = "eggy";
+
 // instance of operator checks whether an instance is from a specific constructor
 console.log(thomas instanceof Person);
+console.log(edgardo instanceof Person);
+
+console.log(ethan.calcAge());
