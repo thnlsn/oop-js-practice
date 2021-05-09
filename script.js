@@ -1,5 +1,6 @@
 "use strict";
 
+// Constuctor Functions
 // Arrow functions do not work for constructors because they do not have 'this' which is required
 const Person = function (firstName, birthyear) {
   this.firstName = firstName;
@@ -21,3 +22,6 @@ const marilyn = new Person("Marilyn", 1997);
 const ethan = new Person("Ethan", 1997);
 console.log(marilyn);
 console.log(ethan);
+
+// instance of operator checks whether an instance is from a specific constructor
+console.log(thomas instanceof Person);
