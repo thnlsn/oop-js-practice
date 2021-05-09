@@ -55,8 +55,15 @@ console.log(Person.prototype.isPrototypeOf(Person)); // false
 // Adding anything to the prototype property will make it available to all instances
 Person.prototype.species = "Homo Sapiens"; // All Person instances will have access to this via the __proto__ property
 console.log(thomas.__proto__.species);
-console.log(thomas.species); // .__proto__ is not neccessary
+console.log(thomas.species); // .__proto__ is not neccessary because of the prototype chain
+// This syntax is possible because JavaScript will always first check the the objects own properties, and if it is unable to find it, it will check the __proto__ property
 
-// Properties that are directly inside the constructor block will be 'own properties' whearas prototype accessible properties are simply able to be accessed in the same syntax
+// Properties that are directly inside the constructor block will be 'own properties' whereas prototype accessible properties are simply able to be accessed in the same syntax
 console.log(thomas.hasOwnProperty("firstName")); // true
 console.log(thomas.hasOwnProperty("species")); // false
+
+// But where did thomas get access to the .hasOwnProperty method?
+// 1. It checks thomas' own properties... Nothing
+// 2. It checks thomas' .__proto__ property (which is Person.prototype)... Nothing
+// 3. It checks Person's .__proto__ property (which is the built-in Object.prototype)... It found one of many built-in and widely inherited object properties! .hasOwnProperty!
+// .hasOwnProperty is called on thomas with 'this' set to thomas itself, so it is as if it is an own method
