@@ -32,9 +32,19 @@ console.log(edgardo instanceof Person);
 
 // Prototypes
 // Every object in JavaScript has the prototype property
-// Anything defined on this prototype property will be available on
+// Anything defined on this prototype property will be available on children of the constructor function
+// This is better than defining the function in the constructor, because you will not by making a copy of the same method 1000 times, instead it will simply be available via prototypal inheritance
+// Only one function exists, but all children can access it
 Person.prototype.calcAge = function () {
   console.log(2037 - this.birthyear);
 };
 
 thomas.calcAge();
+
+console.log(thomas.__proto__); // Prototype of thomas is the prototype property of the constructor function
+console.log(Person.prototype); // This is the prototype property of the constructor function
+console.log(thomas.__proto__ === Person.prototype); // True because they both point to the same prototype property (there is only 1 to which all instances reference)
+
+// Person.prototype is NOT the prototype of Person, it is actually what WILL BE USED as the prototype property to all instances of Person (i.e. thomas)
+console.log(Person.prototype.isPrototypeOf(thomas)); // true
+console.log(Person.prototype.isPrototypeOf(Person)); // false
