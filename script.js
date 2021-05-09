@@ -84,3 +84,13 @@ console.log(arr.__proto__ === Array.prototype); // Remember that .__proto__ on a
 // Because arrays are objects, they have access to all Object prototype properties, at the top of the prototype chain
 console.log(arr.hasOwnProperty("1")); // true
 console.log(arr.hasOwnProperty("10")); // false
+
+console.log("\n\n\n\n\n\n\n\n");
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = () => this.speed + 10;
+Car.prototype.brake = () => this.speed - 5;
