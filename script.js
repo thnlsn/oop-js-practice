@@ -75,4 +75,12 @@ console.log(thomas.__proto__.__proto__.__proto__); // null
 
 // .constructor points back to the constructor function that a prototype is from
 console.dir(Person.prototype.constructor); // Person
-console.dir(thomas.__proto__.constructor); // Person
+console.dir(thomas.__proto__.constructor); // Person\
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8]; // This shorthand to create arrays is the same as new Array
+console.log(arr.__proto__); // This will show you all the built in array methods and properties
+console.log(arr.__proto__ === Array.prototype); // Remember that .__proto__ on an instance and .prototype on a constructor are referencing the same thing
+
+// Because arrays are objects, they have access to all Object prototype properties, at the top of the prototype chain
+console.log(arr.hasOwnProperty("1")); // true
+console.log(arr.hasOwnProperty("10")); // false
