@@ -67,3 +67,12 @@ console.log(thomas.hasOwnProperty("species")); // false
 // 2. It checks thomas' .__proto__ property (which is Person.prototype)... Nothing
 // 3. It checks Person's .__proto__ property (which is the built-in Object.prototype)... It found one of many built-in and widely inherited object properties! .hasOwnProperty!
 // .hasOwnProperty is called on thomas with 'this' set to thomas itself, so it is as if it is an own method
+
+// This is a visualization of what is literally happening when you look-up the prototype chain
+console.log(thomas.__proto__); // Person.prototype
+console.log(thomas.__proto__.__proto__); // Object.prototype
+console.log(thomas.__proto__.__proto__.__proto__); // null
+
+// .constructor points back to the constructor function that a prototype is from
+console.dir(Person.prototype.constructor); // Person
+console.dir(thomas.__proto__.constructor); // Person
