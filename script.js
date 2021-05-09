@@ -52,6 +52,11 @@ console.log(Person.prototype.isPrototypeOf(Person)); // false
 // Person.prototype is bad naming on JavaScript
 // A more apt name would be something like 'Person.prototypeOfInstances' or 'Person.prototypeOfLinkedObjects'
 
+// Adding anything to the prototype property will make it available to all instances
 Person.prototype.species = "Homo Sapiens"; // All Person instances will have access to this via the __proto__ property
 console.log(thomas.__proto__.species);
 console.log(thomas.species); // .__proto__ is not neccessary
+
+// Properties that are directly inside the constructor block will be 'own properties' whearas prototype accessible properties are simply able to be accessed in the same syntax
+console.log(thomas.hasOwnProperty("firstName")); // true
+console.log(thomas.hasOwnProperty("species")); // false
