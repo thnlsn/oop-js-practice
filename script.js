@@ -6,10 +6,6 @@ const Person = function (firstName, birthyear) {
   // Instance properties
   this.firstName = firstName;
   this.birthyear = birthyear;
-
-  this.calcAge = function () {
-    console.log(2037 - this.birthyear);
-  };
 };
 
 // The difference between a normal function and a constructor function is that a constructor function is called with new keyword (i.e. new String())
@@ -34,4 +30,11 @@ const edgardo = "eggy";
 console.log(thomas instanceof Person);
 console.log(edgardo instanceof Person);
 
-console.log(ethan.calcAge());
+// Prototypes
+// Every object in JavaScript has the prototype property
+// Anything defined on this prototype property will be available on
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthyear);
+};
+
+thomas.calcAge();
