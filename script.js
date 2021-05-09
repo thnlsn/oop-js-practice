@@ -6,7 +6,7 @@ const Person = function (firstName, birthyear) {
   // Instance properties
   this.firstName = firstName;
   this.birthyear = birthyear;
-};
+}; // Inside the function block {} is the object that will be returned when this constructor is called with the new keyword
 
 // The difference between a normal function and a constructor function is that a constructor function is called with new keyword (i.e. new String())
 // new is an operator because it ___
@@ -16,7 +16,7 @@ console.log(thomas);
 // Calling a function with the new operator does a lot more than just invoking the function...
 // 1. New {} is created
 // 2. Function is called, and 'this' = {}
-// 3. {} is linked to prototype
+// 3. {} is linked to prototype ---------- via the .__proto__ property
 // 4. Function automatically returns the {}, so it is the value of the {} when called.
 
 const marilyn = new Person("Marilyn", 1996);
@@ -48,3 +48,10 @@ console.log(thomas.__proto__ === Person.prototype); // True because they both po
 // Person.prototype is NOT the prototype of Person, it is actually what WILL BE USED as the prototype property to all instances of Person (i.e. thomas)
 console.log(Person.prototype.isPrototypeOf(thomas)); // true
 console.log(Person.prototype.isPrototypeOf(Person)); // false
+
+// Person.prototype is bad naming on JavaScript
+// A more apt name would be something like 'Person.prototypeOfInstances' or 'Person.prototypeOfLinkedObjects'
+
+Person.prototype.species = "Homo Sapiens"; // All Person instances will have access to this via the __proto__ property
+console.log(thomas.__proto__.species);
+console.log(thomas.species); // .__proto__ is not neccessary
