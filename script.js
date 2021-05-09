@@ -92,5 +92,24 @@ const Car = function (make, speed) {
   this.speed = speed;
 };
 
-Car.prototype.accelerate = () => this.speed + 10;
-Car.prototype.brake = () => this.speed - 5;
+Car.prototype.accelerate = function () {
+  this.speed = +this.speed + 10;
+  console.log(`${this.make} going ${this.speed} km/h`);
+};
+Car.prototype.brake = function () {
+  this.speed = +this.speed - 5;
+  console.log(`${this.make} going ${this.speed} km/h`);
+};
+
+const tesla = new Car("Tesla", "120");
+const delorian = new Car("Delorian", "95");
+
+delorian.accelerate();
+delorian.accelerate();
+delorian.accelerate();
+delorian.brake();
+
+tesla.accelerate();
+tesla.brake();
+tesla.brake();
+tesla.brake();
