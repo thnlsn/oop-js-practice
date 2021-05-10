@@ -2,10 +2,10 @@
 
 // Constuctor Functions
 // Arrow functions do not work for constructors because they do not have 'this' which is required
-const Person = function (firstName, birthyear) {
+const Person = function (firstName, birthYear) {
   // Instance properties
   this.firstName = firstName;
-  this.birthyear = birthyear;
+  this.birthYear = birthYear;
 }; // Inside the function block {} is the object that will be returned when this constructor is called with the new keyword
 
 // The difference between a normal function and a constructor function is that a constructor function is called with new keyword (i.e. new String())
@@ -36,7 +36,7 @@ console.log(edgardo instanceof Person);
 // This is better than defining the function in the constructor, because you will not by making a copy of the same method 1000 times, instead it will simply be available via prototypal inheritance
 // Only one function exists, but all children can access it
 Person.prototype.calcAge = function () {
-  console.log(2037 - this.birthyear);
+  console.log(2037 - this.birthYear);
 };
 
 thomas.calcAge();
@@ -85,8 +85,6 @@ console.log(arr.__proto__ === Array.prototype); // Remember that .__proto__ on a
 console.log(arr.hasOwnProperty("1")); // true
 console.log(arr.hasOwnProperty("10")); // false
 
-console.log("\n\n\n\n\n\n\n\n");
-
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
@@ -113,3 +111,80 @@ tesla.accelerate();
 tesla.brake();
 tesla.brake();
 tesla.brake();
+
+// ES6 Classes
+// They can be created in both ways that a function can be, because they are simply a kind of function (like constructor function)
+
+// class expression
+// const PersonCl = class {};
+
+// class declaration
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // Instance method
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+
+  // Static method
+  static greeting() {
+    console.log("Hey! 👋");
+  }
+}
+// Classes are not hoisted, even if they are a declaration rather than expression
+// Classes are first-class citizens
+// Classes are executed in strict mode (regardless if you have enabled it or not)
+
+const jessica = new PersonCl("Jessica", 1996);
+PersonCl.greeting();
+
+// Object.create()
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+};
+
+// Create an object bronn, with PersonProto as it's .__proto__ or prototype
+const bronn = Object.create(PersonProto);
+console.log(bronn);
+bronn.name = "Bronn";
+bronn.birthYear = 2002;
+bronn.calcAge();
+
+console.log("\n\n\n\n\n\n\n\n");
+
+class Automobile {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} going ${this.speed} km/h`);
+  }
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} going ${this.speed} km/h`);
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+const camry = new Automobile("Camry", 120);
+console.log(camry.speedUS);
+camry.accelerate();
+camry.accelerate();
+camry.accelerate();
+camry.accelerate();
