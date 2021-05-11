@@ -178,7 +178,6 @@ class Automobile {
   }
 
   set speedUS(speed) {
-    this.speed += 10;
     this.speed = speed * 1.6;
   }
 }
