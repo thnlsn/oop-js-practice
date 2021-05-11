@@ -177,14 +177,21 @@ class Automobile {
     return this.speed / 1.6;
   }
 
+  // this.speed will essentially call as speedUS(num);
   set speedUS(speed) {
     this.speed = speed * 1.6;
   }
 }
 
 const camry = new Automobile("Camry", 120);
+// A getter is accessed like an object dot notation
 console.log(camry.speedUS);
 camry.accelerate();
+camry.accelerate();
+camry.accelerate();
+camry.accelerate();
+// A setter is set like a normal variable assignment
+camry.speed = 50;
 camry.accelerate();
 camry.accelerate();
 camry.accelerate();
