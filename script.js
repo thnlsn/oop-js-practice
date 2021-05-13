@@ -189,7 +189,6 @@ console.log(camry.speedUS);
 camry.accelerate();
 camry.accelerate();
 camry.accelerate();
-camry.accelerate();
 // A setter is set like a normal variable assignment
 camry.speed = 50;
 camry.accelerate();
