@@ -194,3 +194,5 @@ camry.speed = 50;
 camry.accelerate();
 camry.accelerate();
 camry.accelerate();
+
+console.log("\n\n\n\n\n\n\n\n");
