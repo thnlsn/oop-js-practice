@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 // // Constuctor Functions
 // // Arrow functions do not work for constructors because they do not have 'this' which is required
@@ -24,7 +24,7 @@
 // console.log(marilyn);
 // console.log(ethan);
 
-// const edgardo = "eggy";
+// const edgardo = "Eggy";
 
 // // instance of operator checks whether an instance is from a specific constructor
 // console.log(thomas instanceof Person);
@@ -55,7 +55,7 @@
 // // Adding anything to the prototype property will make it available to all instances
 // Person.prototype.species = "Homo Sapiens"; // All Person instances will have access to this via the __proto__ property
 // console.log(thomas.__proto__.species);
-// console.log(thomas.species); // .__proto__ is not neccessary because of the prototype chain
+// console.log(thomas.species); // .__proto__ is not neccessary because of the prototype chain (if it not directly available it will check the prototype of the parent, similar to scope chain)
 // // This syntax is possible because JavaScript will always first check the the objects own properties, and if it is unable to find it, it will check the __proto__ property
 
 // // Properties that are directly inside the constructor block will be 'own properties' whereas prototype accessible properties are simply able to be accessed in the same syntax
@@ -75,127 +75,128 @@
 
 // // .constructor points back to the constructor function that a prototype is from
 // console.dir(Person.prototype.constructor); // Person
-// console.dir(thomas.__proto__.constructor); // Person\
+// console.dir(thomas.__proto__.constructor); // Person
 
-// const arr = [1, 2, 3, 4, 5, 6, 7, 8]; // This shorthand to create arrays is the same as new Array
-// console.log(arr.__proto__); // This will show you all the built in array methods and properties
-// console.log(arr.__proto__ === Array.prototype); // Remember that .__proto__ on an instance and .prototype on a constructor are referencing the same thing
+const arr = [1, 2, 3, 4, 5, 6, 7, 8]; // This shorthand to create arrays is the same as new Array
+console.log(arr.__proto__); // This will show you all the built in array methods and properties
+console.log(arr.__proto__ === Array.prototype); // Remember that .__proto__ on an instance and .prototype on a constructor are referencing the same thing
 
-// // Because arrays are objects, they have access to all Object prototype properties, at the top of the prototype chain
-// console.log(arr.hasOwnProperty("1")); // true
-// console.log(arr.hasOwnProperty("10")); // false
+// Because arrays are objects, they have access to all Object prototype properties, at the top of the prototype chain
+console.log(arr.hasOwnProperty("1")); // true
+console.log(arr.hasOwnProperty("10")); // false
+// The above works because when it checks for property, in the case of arrays, it is simply the index (which is the key/property in the object)
 
-// const Car = function (make, speed) {
-//   this.make = make;
-//   this.speed = speed;
-// };
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
 
-// Car.prototype.accelerate = function () {
-//   this.speed += 10;
-//   console.log(`${this.make} going ${this.speed} km/h`);
-// };
-// Car.prototype.brake = function () {
-//   this.speed -= 5;
-//   console.log(`${this.make} going ${this.speed} km/h`);
-// };
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.make} going ${this.speed} km/h`);
+};
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`${this.make} going ${this.speed} km/h`);
+};
 
-// const tesla = new Car("Tesla", 120);
-// const delorian = new Car("Delorian", 95);
+const tesla = new Car("Tesla", 120);
+const delorian = new Car("Delorian", 95);
 
-// delorian.accelerate();
-// delorian.accelerate();
-// delorian.accelerate();
-// delorian.brake();
+delorian.accelerate();
+delorian.accelerate();
+delorian.accelerate();
+delorian.brake();
 
-// tesla.accelerate();
-// tesla.brake();
-// tesla.brake();
-// tesla.brake();
+tesla.accelerate();
+tesla.brake();
+tesla.brake();
+tesla.brake();
 
-// // ES6 Classes
-// // They can be created in both ways that a function can be, because they are simply a kind of function (like constructor function)
+// ES6 Classes
+// They can be created in both ways that a function can be, because they are simply a kind of function (like constructor function)
 
-// // class expression
-// // const PersonCl = class {};
+// class expression
+// const PersonCl = class {};
 
-// // class declaration
-// class PersonCl {
-//   constructor(firstName, birthYear) {
-//     this.firstName = firstName;
-//     this.birthYear = birthYear;
-//   }
+// class declaration
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
 
-//   // Instance method
-//   calcAge() {
-//     console.log(2037 - this.birthYear);
-//   }
+  // Instance method
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
 
-//   // Static method
-//   static greeting() {
-//     console.log("Hey! 👋");
-//   }
-// }
-// // Classes are not hoisted, even if they are a declaration rather than expression
-// // Classes are first-class citizens
-// // Classes are executed in strict mode (regardless if you have enabled it or not)
+  // Static method
+  static greeting() {
+    console.log("Hey! 👋");
+  }
+}
+// Classes are not hoisted, even if they are a declaration rather than expression
+// Classes are first-class citizens
+// Classes are executed in strict mode (regardless if you have enabled it or not)
 
-// const jessica = new PersonCl("Jessica", 1996);
-// PersonCl.greeting();
+const jessica = new PersonCl("Jessica", 1996);
+PersonCl.greeting();
 
-// // Object.create()
-// const PersonProto = {
-//   calcAge() {
-//     console.log(2037 - this.birthYear);
-//   },
-// };
+// Object.create()
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+};
 
-// // Create an object bronn, with PersonProto as it's .__proto__ or prototype
-// const bronn = Object.create(PersonProto);
-// console.log(bronn);
-// bronn.name = "Bronn";
-// bronn.birthYear = 2002;
-// bronn.calcAge();
+// Create an object bronn, with PersonProto as it's .__proto__ or prototype
+const bronn = Object.create(PersonProto);
+console.log(bronn);
+bronn.name = "Bronn";
+bronn.birthYear = 2002;
+bronn.calcAge();
 
-// console.log("\n\n\n\n\n\n\n\n");
+console.log("\n\n\n\n\n\n\n\n");
 
-// class Automobile {
-//   constructor(make, speed) {
-//     this.make = make;
-//     this.speed = speed;
-//   }
+class Automobile {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
 
-//   accelerate() {
-//     this.speed += 10;
-//     console.log(`${this.make} going ${this.speed} km/h`);
-//   }
-//   brake() {
-//     this.speed -= 5;
-//     console.log(`${this.make} going ${this.speed} km/h`);
-//   }
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} going ${this.speed} km/h`);
+  }
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} going ${this.speed} km/h`);
+  }
 
-//   get speedUS() {
-//     return this.speed / 1.6;
-//   }
+  get speedUS() {
+    return this.speed / 1.6;
+  }
 
-//   // this.speed will essentially call as speedUS(num);
-//   set speedUS(speed) {
-//     this.speed = speed * 1.6;
-//   }
-// }
+  // this.speed will essentially call as speedUS(num);
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
 
-// const camry = new Automobile("Camry", 120);
-// // A getter is accessed like an object dot notation
-// console.log(camry.speedUS);
-// camry.accelerate();
-// camry.accelerate();
-// camry.accelerate();
-// // A setter is set like a normal variable assignment
-// camry.speed = 50;
-// camry.accelerate();
-// camry.accelerate();
-// camry.accelerate();
+const camry = new Automobile("Camry", 120);
+// A getter is accessed like an object dot notation
+console.log(camry.speedUS);
+camry.accelerate();
+camry.accelerate();
+camry.accelerate();
+// A setter is set like a normal variable assignment
+camry.speed = 50;
+camry.accelerate();
+camry.accelerate();
+camry.accelerate();
 
-// console.log("\n\n\n\n\n\n\n\n");
+console.log("\n\n\n\n\n\n\n\n");
 
 const Person = function (firstName, birthYear) {
   this.firstName = firstName;
@@ -207,7 +208,24 @@ Person.prototype.calcAge = function () {
 };
 
 const Student = function (firstName, birthYear, course) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
+  // A normal function call of Person will not have the 'this' set correctly, since it is not called with the 'new' operator
+  Person.call(this, firstName, birthYear); // This is the link to the parent Person constructor
   this.course = course;
 };
+
+Student.prototypeOfInstances;
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(
+    `My name is ${
+      this.firstName
+    }, and I am studying ${this.course.toLowerCase()}.`,
+  );
+};
+
+// mike is an instance linked to Student, because it was called with the new operator
+const mike = new Student("Mike", 2020, "Computer Science");
+console.log(mike);
+mike.introduce();
+mike.calcAge();
