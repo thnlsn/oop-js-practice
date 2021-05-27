@@ -86,32 +86,32 @@ console.log(arr.hasOwnProperty("1")); // true
 console.log(arr.hasOwnProperty("10")); // false
 // The above works because when it checks for property, in the case of arrays, it is simply the index (which is the key/property in the object)
 
-const Car = function (make, speed) {
-  this.make = make;
-  this.speed = speed;
-};
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed;
+// };
 
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(`${this.make} going ${this.speed} km/h`);
-};
-Car.prototype.brake = function () {
-  this.speed -= 5;
-  console.log(`${this.make} going ${this.speed} km/h`);
-};
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+//   console.log(`${this.make} going ${this.speed} km/h`);
+// };
+// Car.prototype.brake = function () {
+//   this.speed -= 5;
+//   console.log(`${this.make} going ${this.speed} km/h`);
+// };
 
-const tesla = new Car("Tesla", 120);
-const delorian = new Car("Delorian", 95);
+// const tesla = new Car("Tesla", 120);
+// const delorian = new Car("Delorian", 95);
 
-delorian.accelerate();
-delorian.accelerate();
-delorian.accelerate();
-delorian.brake();
+// delorian.accelerate();
+// delorian.accelerate();
+// delorian.accelerate();
+// delorian.brake();
 
-tesla.accelerate();
-tesla.brake();
-tesla.brake();
-tesla.brake();
+// tesla.accelerate();
+// tesla.brake();
+// tesla.brake();
+// tesla.brake();
 
 // ES6 Classes
 // They can be created in both ways that a function can be, because they are simply a kind of function (like constructor function)
@@ -229,3 +229,25 @@ const mike = new Student("Mike", 2020, "Computer Science");
 console.log(mike);
 mike.introduce();
 mike.calcAge();
+
+console.log("\n\n\n\n\n\n\n\n");
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed); // Inherit Car
+  this.charge = charge; // Unique to an EV
+  this.chargeBattery = function (chargeTo) {
+    this.charge = chargeTo;
+    console.log(`Your ${this.make} is at ${this.charge}% charge.`);
+  };
+};
+
+EV.prototype = Object.create(Car.prototype);
+
+const modelY = new EV("Tesla", 95, 87);
+console.log(modelY);
+modelY.chargeBattery(100);
