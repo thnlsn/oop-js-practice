@@ -1,0 +1,94 @@
+The Prototype Chain
+  - Similar to the scope chain and how a 'look-up' is performed, Objects will 'look-up' properties through the prototype chain to find a match.
+  - A series of links between objects via prototypes
+
+Prototypal Inheritance
+
+console.dir
+
+Class
+
+First-class citizen
+
+Setters and Getters
+
+Whatever object a method is being called on will be the 'this' for the method
+
+Instance Methods
+  - Methods that will be available to all instances of a class/constructor via the prototype (__proto__) property
+
+Static Methods
+  - Methods available on the class/constructor itself, namespaced to the class/constructor, and will NOT be available to instances. It is often used for utility functions or static information.
+
+Concise Method Syntax
+
+Object.create()
+
+Accessors
+
+Calling a function with () vs new
+  - Calling a function with () simply invokes the function.
+  - Calling a function with the new operator does a lot more than just invoking the function...
+    1. New {} is created
+    2. Function is called, and 'this' = {}
+    3. {} is linked to prototype ---------- via the .__proto__ property
+    4. Function automatically returns the {}, so it is the value of the {} when called.
+
+What is Prototypal Inheritance
+
+Prototype Chain vs Scope Chain
+
+.constructor
+
+.prototype vs .__proto__
+
+new Array() vs []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL Stuff
+
+SELECT
+WHERE
+ORDER BY
+INSERT
+NULL
+UPDATE
+SET
+
+Update multiple values in a table:
+  UPDATE Cars
+  SET
+    Make = 'Tesla',
+    Model = 'Model Y',
+  WHERE Type = 'Electric'
+
+SQL Functions:
+  MIN(col)
+  MAX(col)
+  COUNT(col)
+  AVG(col)
+  SUM(col)
+
+  
