@@ -235,19 +235,37 @@ console.log("\n\n\n\n\n\n\n\n");
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
-};
-
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed); // Inherit Car
-  this.charge = charge; // Unique to an EV
-  this.chargeBattery = function (chargeTo) {
-    this.charge = chargeTo;
-    console.log(`Your ${this.make} is at ${this.charge}% charge.`);
+  this.brake = function () {
+    this.speed -= 5;
+    console.log(
+      `You have hit the brakes, your ${this.make} is now going ${this.speed} mp/h.`,
+    );
   };
 };
 
+// Create Electric Vehicle constructor that inherits properties from Car, via the prototype chain
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed); // Inherit Car
+  this.charge = charge; // Unique to an EV
+};
+
+// Ev.prototype will be set to a new object (Object.create creates a new object), and that object will have Car.prototype as the prototype
 EV.prototype = Object.create(Car.prototype);
 
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+  // console.log(`You have charged your ${this.make} to ${this.charge}%.`);
+};
+// this.accelerate = function () {
+//   this.speed += 20;
+//   this.chargeBattery(this.charge - 1);
+//   console.log(
+//     `Your ${this.make} is going ${this.speed} mp/h and is at ${this.charge}% charge.`,
+//   );
+// };
+
 const modelY = new EV("Tesla", 95, 87);
-console.log(modelY);
 modelY.chargeBattery(100);
+// modelY.accelerate();
+modelY.brake();
+console.log(modelY);
