@@ -44,6 +44,16 @@ Prototype Chain vs Scope Chain
 
 new Array() vs []
 
+What if multiple properties/methods with the same name exist in a prototype chain? Why would this be the case anyways?
+  - This might be the case because
+
+Polymorphism
+
+.call() inside a constructor
+
+Inheritance between classes: constructor functions
+Inheritance between classes: ES6 classes
+Inheritance between classes: Object.create()
 
 
 

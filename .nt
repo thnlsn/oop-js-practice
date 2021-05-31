@@ -1,0 +1,11 @@
+Polymorphism
+Constructor Inheritance
+ES6 Class Inheritance
+Object.create() Inheritance
+'this' in a function call and why that is problematic in class inheritance
+Why is the new operator special
+When to link prototypes?
+How do functions, arrays, and objects have access to their methods?
+Difference between .__proto__ and prototype?
+  - .__proto__ is the prototype of whatever object the object with it is linked to (parent), via the prototype chain.
+  - prototype is what will be the .__proto__ of the object linked to it (children).
