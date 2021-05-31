@@ -276,64 +276,98 @@ console.log("\n\n\n\n\n\n\n\n");
 
 //* Constructor Inheritance
 // Eldest parent constructor
-const Pet = function (name, birthYear, colors, cries) {
-  this.name = name;
-  this.birthYear = +birthYear;
-  this.colors = colors;
-  this.cries = cries;
-};
+// const Pet = function (name, birthYear, colors, cries) {
+//   this.name = name;
+//   this.birthYear = +birthYear;
+//   this.colors = colors;
+//   this.cries = cries;
+// };
 
-// Adding a method to the prototype (.__proto__) of Pet's linked objects (children)
-Pet.prototype.logAge = function () {
-  console.log(
-    `${this.name} is ${new Date().getFullYear() - this.birthYear} years old.`,
-  );
-};
-Pet.prototype.cry = function () {
-  console.log(this.cries[Math.floor(Math.random() * this.cries.length)]);
-};
+// // Adding a method to the prototype (.__proto__) of Pet's linked objects (children)
+// Pet.prototype.logAge = function () {
+//   console.log(
+//     `${this.name} is ${new Date().getFullYear() - this.birthYear} years old.`,
+//   );
+// };
+// Pet.prototype.cry = function () {
+//   console.log(this.cries[Math.floor(Math.random() * this.cries.length)]);
+// };
 
-const PetCat = function (name, birthYear, colors) {
-  // Calling pet without call method would be a normal function call (not a new), in which 'this' is always undefined.
-  // Using .call() allows us to call it with a new 'this' context, which is the 'this' of PetCat
-  Pet.call(this, name, birthYear, colors, this.cries);
-  this.cries = ["Meow", "Purr", "Hiss"];
-};
+// const PetCat = function (name, birthYear, colors) {
+//   // Calling pet without call method would be a normal function call (not a new), in which 'this' is always undefined.
+//   // Using .call() allows us to call it with a new 'this' context, which is the 'this' of PetCat
+//   Pet.call(this, name, birthYear, colors, this.cries);
+//   this.cries = ["Meow", "Purr", "Hiss"];
+// };
 
-// This will make it so that inside the .__proto__ of a new PetCat, the .__proto of that will lead to the prototype of Pet.
-// This must be done first before added anything to the prototype of PetCat, because this will overwrite what is inside it prior
-PetCat.prototype = Object.create(Pet.prototype);
+// // This will make it so that inside the .__proto__ of a new PetCat, the .__proto of that will lead to the prototype of Pet.
+// // This must be done first before added anything to the prototype of PetCat, because this will overwrite what is inside it prior
+// PetCat.prototype = Object.create(Pet.prototype);
 
-// This will be available inside the .__proto__ of a new PetCat
-PetCat.prototype.scratch = function (target = "something") {
-  console.log(`${this.name} scratched ${target}!`);
-};
+// // This will be available inside the .__proto__ of a new PetCat
+// PetCat.prototype.scratch = function (target = "something") {
+//   console.log(`${this.name} scratched ${target}!`);
+// };
 
-// PetCat.prototype.constructor = PetCat;
+// // PetCat.prototype.constructor = PetCat;
 
-const PetDog = function (name, birthYear, colors) {
-  Pet.call(this, name, birthYear, colors);
-  this.cries = ["Woof", "Bark", "Growl"];
-};
+// const PetDog = function (name, birthYear, colors) {
+//   Pet.call(this, name, birthYear, colors);
+//   this.cries = ["Woof", "Bark", "Growl"];
+// };
 
-// The prototype (.__proto__ of cal) of PetDog is being set to an empty object with Pet.prototype (what would be the .__proto__ of new Pet) as the value of the .__proto__;
-PetDog.prototype = Object.create(Pet.prototype);
+// // The prototype (.__proto__ of cal) of PetDog is being set to an empty object with Pet.prototype (what would be the .__proto__ of new Pet) as the value of the .__proto__;
+// PetDog.prototype = Object.create(Pet.prototype);
 
-PetDog.prototype.bite = function (target = "something") {
-  console.log(`${this.name} bit ${target}!`);
-};
+// PetDog.prototype.bite = function (target = "something") {
+//   console.log(`${this.name} bit ${target}!`);
+// };
 
-// new links bowie to PetCat's prototype via the .__proto__
-const bowie = new PetCat("Bowie", 2019, ["white"]);
-console.dir(PetCat.prototype.constructor);
-console.log(bowie);
-bowie.logAge();
-bowie.cry();
-bowie.scratch("Andy");
+// // new links bowie to PetCat's prototype via the .__proto__
+// const bowie = new PetCat("Bowie", 2019, ["white"]);
+// console.dir(PetCat.prototype.constructor);
+// console.log(bowie);
+// bowie.logAge();
+// bowie.cry();
+// bowie.scratch("Andy");
 
-// new links cal to PetDog's prototype via the .__proto__
+// // new links cal to PetDog's prototype via the .__proto__
 // const cal = new PetDog("Cal", 2002, ["black, beige"]);
 // console.log(cal);
 // cal.bite(); // Not on cal, but on the prototype of PetDog (which is the .__proto__ of cal)
 // cal.cry(); // Not on cal, and not on it's .__proto__/prototype of PetDog, so check the .__proto__ of PetDog, which is the prototype of Pet, which has cry()
 // cal.logAge(); // Same as cry
+
+//* Constructor Inheritance
+class Pet {
+  constructor(name, birthYear, colors, cries) {
+    this.name = name;
+    this.birthYear = +birthYear;
+    this.colors = colors;
+    this.cries = cries;
+  }
+  // Adding a method to the prototype (.__proto__) of Pet's linked objects (children)
+  logAge() {
+    console.log(
+      `${this.name} is ${new Date().getFullYear() - this.birthYear} years old.`,
+    );
+  }
+  cry() {
+    console.log(this.cries[Math.floor(Math.random() * this.cries.length)]);
+  }
+}
+
+class PetHamster extends Pet {
+  constructor(name, birthYear, colors) {
+    super(name, birthYear, colors);
+    this.cries = ["Squeak", "Snicker"];
+  }
+  nibble(target = "something") {
+    console.log(`${this.name} nibbled ${target}!`);
+  }
+}
+
+const toast = new PetHamster("Toast", 2018, ["brown", "white"]);
+console.log(toast);
+toast.nibble("my finger");
+console.log(toast.age);
