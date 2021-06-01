@@ -9,3 +9,21 @@ How do functions, arrays, and objects have access to their methods?
 Difference between .__proto__ and prototype?
   - .__proto__ is the prototype of whatever object the object with it is linked to (parent), via the prototype chain.
   - prototype is what will be the .__proto__ of the object linked to it (children).
+What is the difference between things put inside the constructor vs inside the prototype?
+  - Things in the constructor will be available on the instance directly, while things in the prototype will be available in the .__proto__ property of an instance.
+super()
+constructor()
+extends
+How can you chain methods in classes/constructors?
+  - Make sure chainable methods return 'this' which is the object itself.
+
+Class Fields/Methods
+  - Public fields
+  - Private fields
+  - Public methods
+  - Private methods
+
+What are Class fields?
+  - Public fields are properties that are on every single instance of a class, meaning they are default, and not even passed in.
+    - They are in the instances rather than the prototype
+  
