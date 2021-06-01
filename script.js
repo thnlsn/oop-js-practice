@@ -339,35 +339,46 @@ console.log("\n\n\n\n\n\n\n\n");
 // cal.logAge(); // Same as cry
 
 //* Constructor Inheritance
-class Pet {
-  constructor(name, birthYear, colors, cries) {
-    this.name = name;
-    this.birthYear = +birthYear;
-    this.colors = colors;
-    this.cries = cries;
-  }
-  // Adding a method to the prototype (.__proto__) of Pet's linked objects (children)
-  logAge() {
-    console.log(
-      `${this.name} is ${new Date().getFullYear() - this.birthYear} years old.`,
-    );
-  }
-  cry() {
-    console.log(this.cries[Math.floor(Math.random() * this.cries.length)]);
+// class Pet {
+//   constructor(name, birthYear, colors) {
+//     this.name = name;
+//     this.birthYear = +birthYear;
+//     this.colors = colors;
+//   }
+//   // Adding a method to the prototype (.__proto__) of Pet's linked objects (children)
+//   get age() {
+//     return new Date().getFullYear() - this.birthYear;
+//   }
+//   cry() {
+//     console.log(this.cries[Math.floor(Math.random() * this.cries.length)]);
+//   }
+// }
+
+// class PetHamster extends Pet {
+//   constructor(name, birthYear, colors) {
+//     super(name, birthYear, colors);
+//     this.cries = ["Squeak", "Snicker"];
+//   }
+//   nibble(target = "something") {
+//     console.log(`${this.name} nibbled ${target}!`);
+//   }
+// }
+
+// const toast = new PetHamster("Toast", 2018, ["brown", "white"]);
+// console.log(toast);
+// toast.nibble("my finger"); // Check toast: no --- Check PetHamster (conn through new): no --- Check PetHamster proto: yes
+// console.log(toast.age);
+// toast.cry();
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    this.movements = [];
+    this.locale = navigator.language;
   }
 }
 
-class PetHamster extends Pet {
-  constructor(name, birthYear, colors) {
-    super(name, birthYear, colors);
-    this.cries = ["Squeak", "Snicker"];
-  }
-  nibble(target = "something") {
-    console.log(`${this.name} nibbled ${target}!`);
-  }
-}
-
-const toast = new PetHamster("Toast", 2018, ["brown", "white"]);
-console.log(toast);
-toast.nibble("my finger");
-console.log(toast.age);
+const acc1 = new Account("Thomas", "USD", 1111);
+console.log(acc1);
