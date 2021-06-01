@@ -14,6 +14,8 @@ What is the difference between things put inside the constructor vs inside the p
 super()
 constructor()
 extends
+  - The extends keyword will automatically set up the prototype chain for a child class.
+  - You can imagine 'Dog extends Animal' as 'Dog inherits Animal'
 How can you chain methods in classes/constructors?
   - Make sure chainable methods return 'this' which is the object itself.
 
